@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+
+    "name": "Chromium CLI+App",
+    "description": "This extension provides CLI capabilities to Chromium, and runs URL in app mode (without toolbars).",
+    "version": "1.0",
+    "author": "Marc Simonetti <marc.simonetti@ipreso.com>",
+    "minimum_chrome_version": "36.0",       /* For chrome.app.window.AppWindow.innerBounds */
+
+    "permissions":[
+        "background",
+        "webview"
+    ],
+
+    "app": {
+        "background": {
+            "scripts": ["scripts/background.js",
+                        "scripts/commands.js",
+                        "scripts/tcp-server.js",
+                        "scripts/winseqid.js"]
+        }
+    },
+    "sockets": {
+        "tcpServer": {
+            "listen": "127.0.0.1:*"
+        }
+    }
+}
