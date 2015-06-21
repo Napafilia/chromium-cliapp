@@ -85,7 +85,7 @@ const DEFAULT_MAX_CONNECTIONS=5;
   TcpServer.prototype.listen = function(callback) {
     // Register connect callback.
     this.callbacks.connect = callback;
-    socket.create({}, this._onCreate.bind(this));
+    socket.create({persistent: true}, this._onCreate.bind(this));
   };
 
 
@@ -163,6 +163,7 @@ const DEFAULT_MAX_CONNECTIONS=5;
   }
 
   TcpServer.prototype._onAcceptError = function(info) {
+    error('Unable to accept incoming connection. Error code=' + info.resultCode);
     if (info.socketId != this.serverSocketId)
       return;
 
